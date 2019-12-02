@@ -1,9 +1,8 @@
-Feature: Bienvenida
-	Como usuario de banco
-	Quiero gestionar mi cuenta
-	Para mantenerla actualizada
+Feature:
+    Como Jugador
+    Quiero recibir un saludo al entrar a la pagina
+    Para sentirme a gusto
 
-	Scenario: Cuenta inicial
-		Given visito la pagina principal
-		Then deberia ver "Bienvenido a cuentas"
-		And deberia ver "Balance actual: 0"
+    Scenario:
+    Given visito la pagina principal
+    Then deberia ver un mensaje "Bienvenido al saludador"
