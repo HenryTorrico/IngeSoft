@@ -4,8 +4,9 @@ get '/' do
    erb :saludo 
 end
 
-post '/saludar' do
-    @nombre_persona = params[:nombre]
+get '/saludar' do
+    @nombre_persona = params[:Nombre]
     erb :saludo_nombre
 end
+
   

@@ -1,23 +1,32 @@
 class Terreno
-    tamX=0
-    tamY=0
+
+    def initialize(tamx,tamy)
+        @tamX=tamx
+        @tamY=tamy
+    end
 
     def setX(num)
         if(num>0)
-            tamX=num
-            return tamX
+            @tamX=num
         else
-            return nil
+            puts "valor invalido"
         end
+    end
+
+    def getX()
+        return @tamX
     end
 
     def setY(num)
         if(num>0)
-            tamY=num
-            return tamY
+            @tamY=num
         else
-            return nil
+            puts "valor invalido"
         end
+    end
+
+    def getY()
+        return @tamY
     end
 end
     

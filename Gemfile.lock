@@ -30,6 +30,8 @@ GEM
     mustermann (1.0.3)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.5-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -73,6 +75,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   cucumber
