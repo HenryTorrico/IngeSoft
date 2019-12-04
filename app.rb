@@ -1,5 +1,11 @@
 require 'sinatra'
 
 get '/' do
-    "Bienvenido al saludador"
+   erb :saludo 
 end
+
+post '/saludar' do
+    @nombre_persona = params[:nombre]
+    erb :saludo_nombre
+end
+  
