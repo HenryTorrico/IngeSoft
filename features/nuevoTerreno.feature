@@ -3,7 +3,7 @@ Feature:
     Quiero crear un terreno
     Para poder situar ahi mi auto
 
-    Scenario:
+Scenario:
     Given visito la pagina principal
     And ingreso "5" en el campo "tamX"
     And ingreso "5" en el campo "tamY"

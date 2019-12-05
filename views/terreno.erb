@@ -21,8 +21,8 @@
 <body>
 	<center>
 		<div class="jumbotron">
-	        <% for i in 0..@tamX-1 do %>
-                <% for j in 0..@tamY-1 do %>
+	        <% for i in 0..$tamX-1 do %>
+                <% for j in 0..$tamY-1 do %>
                     <b>
                         0
                     </b>
@@ -33,7 +33,7 @@
 	</center>
     <br/>
     <center>
-        <button ><a href='/nuevoAuto/<%=@tamX%>/<%=@tamY%>'>Nuevo Auto</a></button>
+        <button ><a href='/nuevoAuto/<%=$tamX%>/<%=$tamY%>'>Nuevo Auto</a></button>
 		
     </center>
 </body>
