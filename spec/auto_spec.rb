@@ -52,12 +52,12 @@ RSpec.describe Auto do
     end
 
     #movimiento adelante
-    it 'deberia aumentar en Y al avanzar hacia el norte' do
+    it 'deberia disminuir en Y al avanzar hacia el norte' do
         auto= Auto.new(0, 0, 'N')
         y=auto.gety()
         auto.setdir('N')
         auto.mover('A')
-        expect(auto.gety()).to eq(y+1)
+        expect(auto.gety()).to eq(y-1)
     end
 
     it 'deberia aumentar en X al avanzar hacia el este' do
@@ -68,12 +68,12 @@ RSpec.describe Auto do
         expect(auto.getx()).to eq(x+1)
     end
 
-    it 'deberia disminuir en y al avanzar hacia el sud' do
+    it 'deberia aumentar en y al avanzar hacia el sud' do
         auto= Auto.new(0, 0, 'N')
         y=auto.gety()
         auto.setdir('S')
         auto.mover('A')
-        expect(auto.gety()).to eq(y-1)
+        expect(auto.gety()).to eq(y+1)
     end
 
     it 'deberia disminuir en X al avanzar hacia el oeste' do
@@ -94,13 +94,13 @@ RSpec.describe Auto do
         expect(auto.getx()).to eq(x+1)
     end
 
-    it 'deberia cambiar direccion al sud si gira a la derecha desde el este y disminuir en y' do
+    it 'deberia cambiar direccion al sud si gira a la derecha desde el este y aumentar en y' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('E')
         y=auto.gety()
         auto.mover('D')
         expect(auto.getdir()).to eq('S')
-        expect(auto.gety()).to eq(y-1)
+        expect(auto.gety()).to eq(y+1)
     end
 
     it 'deberia cambiar direccion al oeste si gira a la derecha desde el sud y disminuir en x' do
@@ -112,13 +112,13 @@ RSpec.describe Auto do
         expect(auto.getx()).to eq(x-1)
     end
 
-    it 'deberia cambiar direccion al norte si gira a la derecha desde el oeste y aumentar en y' do
+    it 'deberia cambiar direccion al norte si gira a la derecha desde el oeste y disminuir en y' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('W')
         y=auto.gety()
         auto.mover('D')
         expect(auto.getdir()).to eq('N')
-        expect(auto.gety()).to eq(y+1)
+        expect(auto.gety()).to eq(y-1)
     end
     
     #movimiento izquierda
@@ -131,13 +131,13 @@ RSpec.describe Auto do
         expect(auto.getx()).to eq(x-1)
     end
 
-    it 'deberia cambiar direccion al norte si gira a la izquierda desde el este y aumentar en y' do
+    it 'deberia cambiar direccion al norte si gira a la izquierda desde el este y disminuir en y' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('E')
         y=auto.gety()
         auto.mover('I')
         expect(auto.getdir()).to eq('N')
-        expect(auto.gety()).to eq(y+1)
+        expect(auto.gety()).to eq(y-1)
     end
 
     it 'deberia cambiar direccion al este si gira a la izquierda desde el sud y aumentar en x' do
@@ -149,13 +149,13 @@ RSpec.describe Auto do
         expect(auto.getx()).to eq(x+1)
     end
 
-    it 'deberia cambiar direccion al sud si gira a la izquierda desde el oeste y disminuir en y' do
+    it 'deberia cambiar direccion al sud si gira a la izquierda desde el oeste y aumentar en y' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('W')
         y=auto.gety()
         auto.mover('I')
         expect(auto.getdir()).to eq('S')
-        expect(auto.gety()).to eq(y-1)
+        expect(auto.gety()).to eq(y+1)
     end
 
 end

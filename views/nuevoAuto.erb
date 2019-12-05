@@ -21,12 +21,17 @@
 <body>
 	<center>
 		<div class="jumbotron">
-	        <form method="post" action="/autoTerreno/<%=@tamX%>/<%=@tamX%>">
+	        <form method="post" action="/autoTerreno/<%=$tamX%>/<%=$tamY%>">
 				<input type='text' name='posX' placeholder='Ingrese posicon en X'/>
 				<br/>
-				<input type='text' name='posY' placeholder='Ingrese psocion en Y'/>
+				<input type='text' name='posY' placeholder='Ingrese posicion en Y'/>
 				<br/>
-                <input type='text' name='direccion' placeholder='Ingrese Orientacion'/>
+                <select class="form-control" name="direccion" id="direccion">
+                    <option value="N">Norte</option>
+                    <option value="S">Sud</option>
+                    <option value="E">Este</option>
+                    <option value="W">Oeste</option>
+                </select>
 				<br/>
 		    	<button type="submit"  class="btn btn-success" name="Generar Auto">Generar Auto</button>
 			</form>
