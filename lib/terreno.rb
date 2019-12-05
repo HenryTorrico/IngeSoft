@@ -1,3 +1,4 @@
+require './lib/auto.rb'
 class Terreno
 
     def initialize(tamx,tamy)
