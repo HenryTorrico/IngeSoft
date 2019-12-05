@@ -64,7 +64,7 @@ class Auto
     def mover (mov)
         if(mov=='A')
             if(@direccion=='N')
-                @posicion_y = @posicion_y + 1
+                @posicion_y = @posicion_y - 1
             end
             if(@direccion=='E')
                 @posicion_x = @posicion_x + 1
@@ -73,7 +73,7 @@ class Auto
                 @posicion_x = @posicion_x - 1
             end
             if(@direccion=='S')
-                @posicion_y = @posicion_y - 1
+                @posicion_y = @posicion_y + 1
             end
         end
         if(mov=='D')
@@ -82,11 +82,11 @@ class Auto
                 @direccion='E'
             else
                 if(@direccion=='E')
-                    @posicion_y = @posicion_y - 1
+                    @posicion_y = @posicion_y + 1
                     @direccion='S'
                 else
                     if(@direccion=='W')
-                        @posicion_y = @posicion_y + 1
+                        @posicion_y = @posicion_y - 1
                         @direccion='N'
                     else
                         if(@direccion=='S')
@@ -103,11 +103,11 @@ class Auto
                 @direccion='W'
             else
                 if(@direccion=='E')
-                    @posicion_y = @posicion_y + 1
+                    @posicion_y = @posicion_y - 1
                     @direccion='N'
                 else
                     if(@direccion=='W')
-                        @posicion_y = @posicion_y - 1
+                        @posicion_y = @posicion_y + 1
                         @direccion='S'
                     else
                         if(@direccion=='S')

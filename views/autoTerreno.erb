@@ -21,10 +21,10 @@
 <body>
 	<center>
 		<div class="jumbotron">
-	        <% for i in 0..@tamX-1 do %>
-                <% for j in 0..@tamY-1 do %>
+	        <% for i in 0..$tamY-1 do %>
+                <% for j in 0..$tamX-1 do %>
                     <b>
-                        <% if (i== @posX-1) and (j==@posY-1) %>       
+                        <% if (i== $posY-1) and (j==$posX-1) %>       
                             1
                             <% else %> 
                             0
@@ -33,6 +33,22 @@
                 <% end %>
                 <br/>
             <% end %>
-        </div>	
+		</div>
+		<div class="jumbotron">
+			<h3>Posicion actual del carro: </h3>
+			<br></br>
+			<%= $posicionAuto %>
+		</div>
+		<br></br>
+		<form method="post" action="/moveCar">
+            <div class="form-group">
+                <select class="form-control" name="movement" id="movement">
+                    <option value='A'>Adelante</option>
+                    <option value='I'>Izquierda</option>
+                    <option value='D'>Derecha</option>
+                </select>
+                <input type="submit" value="mover">
+            </div>
+        </form>
 	</center>
 </body>
