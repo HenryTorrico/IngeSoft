@@ -16,6 +16,8 @@ post '/play' do
 get '/nuevoAuto/:x/:y' do
    @tamX=params[:x].to_i 
    @tamY=params[:y].to_i
+   puts @tamX
+   puts @tamY
    erb :nuevoAuto
 end
 
