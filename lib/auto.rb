@@ -10,6 +10,8 @@ class Auto
     def initialize(posx,posy,dir)
         @posicion_x = posx
         @posicion_y = posy
+        @limite_x= posx
+        @limite_y= posy
         @direccion = dir
         @position = [@posicion_x,@posicion_y,@direccion]
     end
@@ -23,11 +25,9 @@ class Auto
     end
     
     def setx(num)
-        if(num>0)
+        if(num>=0)
             @posicion_x=num
             updatePosition()
-        else
-            puts "valor no valido"
         end
     end
     
@@ -36,11 +36,9 @@ class Auto
     end
 
     def sety(num)
-        if(num>0)
+        if(num>=0)
             @posicion_y=num
             updatePosition()
-        else
-            puts "valor no valido"
         end
     end
 
@@ -48,12 +46,26 @@ class Auto
         return @posicion_y
     end
 
+    def setlimitx(num)
+        @limite_x=num
+    end
+
+    def getlimitx()
+        return @limite_x
+    end
+
+    def setlimity(num)
+        @limite_y=num
+    end
+
+    def getlimity()
+        return @limite_y
+    end
+
     def setdir (dir)
         if(dir=='N'||dir=='S'||dir=='E'||dir=='W')
             @direccion=dir
             updatePosition()
-        else
-            puts "valor no valido"
         end
     end
 
@@ -62,7 +74,7 @@ class Auto
     end
 
     def mover (mov)
-        if(mov=='A')
+        if((mov=="A")&&(permitirMov()))
             if(@direccion=='N')
                 @posicion_y = @posicion_y - 1
             end
@@ -76,42 +88,34 @@ class Auto
                 @posicion_y = @posicion_y + 1
             end
         end
-        if(mov=='D')
+        if(mov=="D")
             if(@direccion=='N')
-                @posicion_x = @posicion_x + 1
                 @direccion='E'
             else
                 if(@direccion=='E')
-                    @posicion_y = @posicion_y + 1
                     @direccion='S'
                 else
                     if(@direccion=='W')
-                        @posicion_y = @posicion_y - 1
                         @direccion='N'
                     else
                         if(@direccion=='S')
-                            @posicion_x = @posicion_x - 1
                             @direccion='W'
                         end
                     end
                 end
             end
         end
-        if(mov=='I')
+        if(mov=="I")
             if(@direccion=='N')
-                @posicion_x = @posicion_x - 1
                 @direccion='W'
             else
                 if(@direccion=='E')
-                    @posicion_y = @posicion_y - 1
                     @direccion='N'
                 else
                     if(@direccion=='W')
-                        @posicion_y = @posicion_y + 1
                         @direccion='S'
                     else
                         if(@direccion=='S')
-                            @posicion_x = @posicion_x + 1
                             @direccion='E'
                         end
                     end
@@ -119,6 +123,33 @@ class Auto
             end
         end
         updatePosition()
+    end
+
+    def movimiento(cadena)
+        aux=cadena
+        tam=aux.length
+        i=0
+        while (i<tam) do
+            mover(aux[i])
+            i=i+1
+        end
+    end
+
+    def permitirMov()
+        resp=false
+        if((@direccion=='N')&&(@posicion_y>0))
+            resp=true
+        end
+        if((@direccion=='S')&&(@posicion_y<@limite_y-1))
+            resp=true
+        end
+        if((@direccion=='E')&&(@posicion_x<@limite_x-1))
+            resp=true
+        end
+        if((@direccion=='W')&&(@posicion_x>0))
+            resp=true
+        end
+        return resp
     end
 
 end

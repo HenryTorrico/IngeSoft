@@ -9,8 +9,6 @@ class Terreno
     def setX(num)
         if(num>0)
             @tamX=num
-        else
-            puts "valor invalido"
         end
     end
 
@@ -21,8 +19,6 @@ class Terreno
     def setY(num)
         if(num>0)
             @tamY=num
-        else
-            puts "valor invalido"
         end
     end
 

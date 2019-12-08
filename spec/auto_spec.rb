@@ -51,111 +51,135 @@ RSpec.describe Auto do
         expect(auto.getPosition()).to eq([5,7,'S'])
     end
 
+    it 'deberia devolver limite 1 para limite 1 en Y' do
+        auto= Auto.new(0,0,'N')
+        auto.setlimity(1)
+        expect(auto.getlimity()).to eq(1)
+    end
+
+    it 'deberia devolver limite 1 para limite 1 en x' do
+        auto= Auto.new(0,0,'N')
+        auto.setlimitx(1)
+        expect(auto.getlimitx()).to eq(1)
+    end
+
     #movimiento adelante
     it 'deberia disminuir en Y al avanzar hacia el norte' do
-        auto= Auto.new(0, 0, 'N')
+        auto= Auto.new(0, 4, 'N')
+        auto.setlimitx(20)
+        auto.setlimity(20)
         y=auto.gety()
         auto.setdir('N')
-        auto.mover('A')
+        auto.mover("A")
         expect(auto.gety()).to eq(y-1)
     end
 
     it 'deberia aumentar en X al avanzar hacia el este' do
         auto= Auto.new(0, 0, 'N')
+        auto.setlimitx(20)
+        auto.setlimity(20)
         x=auto.getx()
         auto.setdir('E')
-        auto.mover('A')
+        auto.mover("A")
         expect(auto.getx()).to eq(x+1)
     end
 
     it 'deberia aumentar en y al avanzar hacia el sud' do
         auto= Auto.new(0, 0, 'N')
+        auto.setlimitx(20)
+        auto.setlimity(20)
         y=auto.gety()
         auto.setdir('S')
-        auto.mover('A')
+        auto.mover("A")
         expect(auto.gety()).to eq(y+1)
     end
 
     it 'deberia disminuir en X al avanzar hacia el oeste' do
-        auto= Auto.new(0, 0, 'N')
+        auto= Auto.new(4, 0, 'N')
+        auto.setlimitx(20)
+        auto.setlimity(20)
         x=auto.getx()
         auto.setdir('W')
-        auto.mover('A')
+        auto.mover("A")
         expect(auto.getx()).to eq(x-1)
     end
 
-    
-    it 'deberia cambiar direccion al este si gira a la derecha desde el norte y aumentar en x' do
+    #movimiento derecha
+    it 'deberia cambiar direccion al este si gira a la derecha desde el norte' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('N')
-        x=auto.getx()
-        auto.mover('D')
+        auto.mover("D")
         expect(auto.getdir()).to eq('E')
-        expect(auto.getx()).to eq(x+1)
     end
 
-    it 'deberia cambiar direccion al sud si gira a la derecha desde el este y aumentar en y' do
+    it 'deberia cambiar direccion al sud si gira a la derecha desde el este' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('E')
-        y=auto.gety()
-        auto.mover('D')
+        auto.mover("D")
         expect(auto.getdir()).to eq('S')
-        expect(auto.gety()).to eq(y+1)
     end
 
-    it 'deberia cambiar direccion al oeste si gira a la derecha desde el sud y disminuir en x' do
+    it 'deberia cambiar direccion al oeste si gira a la derecha desde el sud' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('S')
-        x=auto.getx()
-        auto.mover('D')
+        auto.mover("D")
         expect(auto.getdir()).to eq('W')
-        expect(auto.getx()).to eq(x-1)
     end
 
-    it 'deberia cambiar direccion al norte si gira a la derecha desde el oeste y disminuir en y' do
+    it 'deberia cambiar direccion al norte si gira a la derecha desde el oeste' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('W')
-        y=auto.gety()
-        auto.mover('D')
+        auto.mover("D")
         expect(auto.getdir()).to eq('N')
-        expect(auto.gety()).to eq(y-1)
     end
     
     #movimiento izquierda
-    it 'deberia cambiar direccion al oeste si gira a la izquierda desde el norte y disminuir en x' do
+    it 'deberia cambiar direccion al oeste si gira a la izquierda desde el norte' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('N')
-        x=auto.getx()
-        auto.mover('I')
+        auto.mover("I")
         expect(auto.getdir()).to eq('W')
-        expect(auto.getx()).to eq(x-1)
     end
 
-    it 'deberia cambiar direccion al norte si gira a la izquierda desde el este y disminuir en y' do
+    it 'deberia cambiar direccion al norte si gira a la izquierda desde el este' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('E')
-        y=auto.gety()
-        auto.mover('I')
+        auto.mover("I")
         expect(auto.getdir()).to eq('N')
-        expect(auto.gety()).to eq(y-1)
     end
 
-    it 'deberia cambiar direccion al este si gira a la izquierda desde el sud y aumentar en x' do
+    it 'deberia cambiar direccion al este si gira a la izquierda desde el sud' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('S')
-        x=auto.getx()
-        auto.mover('I')
+        auto.mover("I")
         expect(auto.getdir()).to eq('E')
-        expect(auto.getx()).to eq(x+1)
     end
 
-    it 'deberia cambiar direccion al sud si gira a la izquierda desde el oeste y aumentar en y' do
+    it 'deberia cambiar direccion al sud si gira a la izquierda desde el oeste' do
         auto= Auto.new(0, 0, 'N')
         auto.setdir('W')
-        y=auto.gety()
-        auto.mover('I')
+        auto.mover("I")
         expect(auto.getdir()).to eq('S')
-        expect(auto.gety()).to eq(y+1)
+    end
+
+    it 'deberia cambiar de posicion al pasarle una cadena de movimientos' do
+        auto= Auto.new(0, 0, 'S')
+        auto.setlimitx(20)
+        auto.setlimity(20)
+        auto.movimiento("AAIAADAAIA")
+        expect(auto.getdir()).to eq('E')
+        expect(auto.gety()).to eq(4)
+        expect(auto.getx()).to eq(3)
+    end
+
+    it 'no deberia moverse el auto al estar en un limite del terreno' do
+        auto= Auto.new(0, 0, 'S')
+        auto.setlimitx(2)
+        auto.setlimity(2)
+        auto.movimiento("AAIAADAAIA")
+        expect(auto.getx()).to eq(1)
+        expect(auto.gety()).to eq(1)
+        expect(auto.getdir()).to eq('E')
     end
 
 end
