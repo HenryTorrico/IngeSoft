@@ -38,6 +38,10 @@ get '/autoTerreno/:x/:y' do
    $posY = params[:posY].to_i
    $orientacion = params[:direccion]
    $auto=Auto.new($posX,$posY,$orientacion)
+   $auto.setlimitx($tamX)
+   $auto.setlimity($tamY)
+   puts $auto.getlimitx()
+   puts $auto.getlimity()
    $posicionAuto=$auto.getPosition()
    erb :autoTerreno
 end
@@ -49,6 +53,8 @@ post '/autoTerreno/:x/:y' do
    $posY = params[:posY].to_i
    $orientacion = params[:direccion]
    $auto=Auto.new($posX,$posY,$orientacion)
+   $auto.setlimitx($tamX)
+   $auto.setlimity($tamY)
    $posicionAuto=$auto.getPosition()
    if(($posX>$tamX)||($tamY<$posY)||($posX<0)||($posY<0))
       erb :errorAuto
@@ -59,7 +65,9 @@ post '/autoTerreno/:x/:y' do
 
  post '/moveCar' do
    @mov = params[:movement].to_s
-   $auto.mover(@mov)
+   $auto.movimiento(@mov)
+   puts $auto.getlimitx()
+   puts $auto.getlimity()
    $posX = $auto.getx()
    $posY = $auto.gety()
    $posicionAuto = $auto.getPosition()

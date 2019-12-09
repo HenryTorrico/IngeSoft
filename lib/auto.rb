@@ -136,18 +136,21 @@ class Auto
     end
 
     def permitirMov()
-        resp=false
-        if((@direccion=='N')&&(@posicion_y>0))
-            resp=true
-        end
-        if((@direccion=='S')&&(@posicion_y<@limite_y-1))
-            resp=true
-        end
-        if((@direccion=='E')&&(@posicion_x<@limite_x-1))
-            resp=true
-        end
-        if((@direccion=='W')&&(@posicion_x>0))
-            resp=true
+        resp=true
+        if((@direccion=='N')&&(@posicion_y==0))
+            resp=false
+        else
+            if((@direccion=='S')&&(@posicion_y==@limite_y-1))
+                resp=false
+            else
+                if((@direccion=='E')&&(@posicion_x==@limite_x-1))
+                    resp=false
+                else
+                    if((@direccion=='W')&&(@posicion_x==0))
+                        resp=false
+                    end
+                end
+            end
         end
         return resp
     end
