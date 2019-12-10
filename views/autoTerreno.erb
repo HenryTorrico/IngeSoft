@@ -24,7 +24,7 @@
 	        <% for i in 0..$tamY-1 do %>
                 <% for j in 0..$tamX-1 do %>
                     <b>
-                        <% if (i== $posY-1) and (j==$posX-1) %>       
+                        <% if (i== $posY) and (j==$posX) %>       
                             1
                             <% else %> 
                             0
@@ -41,14 +41,8 @@
 		</div>
 		<br/>
 		<form method="post" action="/moveCar">
-            <div class="form-group">
-				<select class="form-control" name='movement' id='movement'>
-                    <option value="A">Adelante</option>
-                    <option value="I">Izquierda</option>
-                    <option value="D">Derecha</option>
-                </select>               
-				<input type="submit" value="mover">
-            </div>
+			<input type='text' name='movement' id='movement' placeholder='Ingrese Los movimientos del auto con mayusculas' class="form-control" >              
+			<input type="submit" value="mover">
         </form>
 	</center>
 </body>
