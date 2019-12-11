@@ -95,12 +95,14 @@ post '/autoTerreno/:x/:y' do
    $posAutosX = []
    $posAutosY = []
    $orientacionAutos = []
-   if $cantAutosAux.to_i >= 2
+   if $cantAutosAux.to_i >= 1
       $posAutosX.push(params[:posXAuto1])
-      $posAutosX.push(params[:posXAuto2])
       $posAutosY.push(params[:posYAuto1])
-      $posAutosY.push(params[:posYAuto2])
       $orientacionAutos.push(params[:direccionAuto1])
+   end
+   if $cantAutosAux.to_i >= 2
+      $posAutosX.push(params[:posXAuto2])
+      $posAutosY.push(params[:posYAuto2])
       $orientacionAutos.push(params[:direccionAuto2])
    end
    if $cantAutosAux.to_i >= 3
