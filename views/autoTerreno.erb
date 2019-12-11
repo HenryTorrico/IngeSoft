@@ -21,20 +21,24 @@
 <body>
 	<center>
 		<div class="jumbotron">
+	
+		<br/>
 	        <% for i in 0..$tamY-1 do %>
                 <% for j in 0..$tamX-1 do %>
                     <b>
-                        <% if (i== $posY) and (j==$posX) %>       
-                            1
-                            <% else %> 
-                            0
-                        <% end %>
+						<% for index in 0..$terreno.getAutos().length-1 do %>
+							<% if ((i == $terreno.getAuto(index).gety()) && (j==$terreno.getAuto(index).getx())) %>       
+								1
+								<% else %> 
+								0
+							<% end %>
+						<% end %>
                     </b>
                 <% end %>
                 <br/>
             <% end %>
 		</div>
-		<div class="jumbotron">
+		<!--<div class="jumbotron">
 			<h3>Posicion actual del carro: </h3>
 			<br/>
 			<%= $posicionAuto %>
@@ -43,6 +47,6 @@
 		<form method="post" action="/moveCar">
 			<input type='text' name='movement' id='movement' placeholder='Ingrese Los movimientos del auto con mayusculas' class="form-control" >              
 			<input type="submit" value="mover">
-        </form>
+        </form>-->
 	</center>
 </body>
