@@ -4,6 +4,7 @@ class Terreno
     def initialize(tamx,tamy)
         @tamX=tamx
         @tamY=tamy
+        @listAutos=[]
     end
 
     def setX(num)
@@ -25,6 +26,19 @@ class Terreno
     def getY()
         return @tamY
     end
+
+    def addAuto(auto)
+        @listAutos<<auto
+    end
+
+    def getAuto(index)
+        return @listAutos[index]
+    end
+
+    def getAutos()
+        return @listAutos
+    end
+
 end
     
     
