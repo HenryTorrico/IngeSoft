@@ -7,6 +7,10 @@ class Auto
     #    @position = [@posicion_x,@posicion_y,@direccion]
     #end
 
+    def initialize()
+    end
+    
+
     def initialize(posx,posy,dir)
         @posicion_x = posx
         @posicion_y = posy

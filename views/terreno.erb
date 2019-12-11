@@ -24,7 +24,7 @@
 	        <% for i in 0..$tamY-1 do %>
                 <% for j in 0..$tamX-1 do %>
                     <b>
-                        0
+                    	0
                     </b>
                 <% end %>
                 <br/>
@@ -33,6 +33,21 @@
 	</center>
     <br/>
     <center>
-        <button ><a href='/nuevoAuto/<%=$tamX%>/<%=$tamY%>'>Nuevo Auto</a></button>
+		<form method="post" action="/autoTerreno/<%=$tamX%>/<%=$tamY%>">
+			<% for index in 1..$cantAutosAux.to_i %>
+				<input type='text' class="form-control" name='posXAuto<%=index%>' placeholder='Ingrese posicion en X de auto <%=index%>'/>
+					<br/>
+					<input type='text' class="form-control" name='posYAuto<%=index%>' placeholder='Ingrese posicion en Y de auto <%=index%>'/>
+					<br/>
+					<select class="form-control" name="direccionAuto<%=index%>" id="direccionAuto<%=index%>">
+						<option value="N">Norte</option>
+						<option value="S">Sud</option>
+						<option value="E">Este</option>
+						<option value="W">Oeste</option>
+					</select>
+				<br>
+			<% end %>
+			<button type="submit"  class="btn btn-success" name="Generar Autos">Generar Autos</button>
+		</form>
     </center>
 </body>
