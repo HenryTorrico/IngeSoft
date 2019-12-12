@@ -176,10 +176,10 @@ RSpec.describe Auto do
         auto= Auto.new(0, 0, 'S')
         auto.setlimitx(2)
         auto.setlimity(2)
-        auto.movimiento("AAIAADAAIA")
-        expect(auto.getx()).to eq(1)
+        auto.movimiento("AAIAAIAAIAAIA")
+        expect(auto.getx()).to eq(0)
         expect(auto.gety()).to eq(1)
-        expect(auto.getdir()).to eq('E')
+        expect(auto.getdir()).to eq('S')
     end
 
 end
