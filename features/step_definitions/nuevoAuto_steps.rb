@@ -1,5 +1,15 @@
+require '././lib/auto'
 
-Given("ingreso {string} en el campo de auto {string}") do |string, string2|
-    visit '/nuevoAuto/0/0'
-    fill_in(string2, :with => string)
+When("selecciono {int} auto") do |int|
+    visit '/'
+    select /#{int}/m, :from => "players"
 end
+
+
+When("lleno las posiciones con {int} y {int} y {string}") do |movX, movY, orientacion|
+    visit '/play'
+    fill_in('posXAuto1', with: movX)
+    fill_in('posYAuto1', with: movY)
+    fill_in('direccionAuto1', with: orientacion)
+end
+  

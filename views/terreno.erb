@@ -30,14 +30,16 @@
                 <br/>
             <% end %>
         </div>	
+		
 	</center>
     <br/>
+
     <center>
 		<form method="post" action="/autoTerreno/<%=$tamX%>/<%=$tamY%>">
 			<% for index in 1..$cantAutosAux.to_i %>
-				<input type='text' class="form-control" name='posXAuto<%=index%>' placeholder='Ingrese posicion en X de auto <%=index%>'/>
+				<input type='text'  name='posXAuto<%=index%>' id='posXAuto<%=index%>'placeholder='Ingrese posicion en X de auto <%=index%>'/>
 					<br/>
-					<input type='text' class="form-control" name='posYAuto<%=index%>' placeholder='Ingrese posicion en Y de auto <%=index%>'/>
+					<input type='text'  name='posYAuto<%=index%>' id='posYAuto<%=index%>'placeholder='Ingrese posicion en Y de auto <%=index%>'/>
 					<br/>
 					<select class="form-control" name="direccionAuto<%=index%>" id="direccionAuto<%=index%>">
 						<option value="N">Norte</option>

@@ -30,20 +30,22 @@ get '/errorAuto' do
    erb :terreno
 end
 
+
 get '/autoTerreno/:x/:y' do
    $tamX=params[:x].to_i 
    $tamY=params[:y].to_i
-   puts $tamX
-   puts $tamY
    $posAutosX = []
    $posAutosY = []
    $orientacionAutos = []
-   if $cantAutosAux.to_i >= 2
+   @datosValidos=true
+   if $cantAutosAux.to_i >= 1
       $posAutosX.push(params[:posXAuto1])
-      $posAutosX.push(params[:posXAuto2])
       $posAutosY.push(params[:posYAuto1])
-      $posAutosY.push(params[:posYAuto2])
       $orientacionAutos.push(params[:direccionAuto1])
+   end
+   if $cantAutosAux.to_i >= 2
+      $posAutosX.push(params[:posXAuto2])
+      $posAutosY.push(params[:posYAuto2])
       $orientacionAutos.push(params[:direccionAuto2])
    end
    if $cantAutosAux.to_i >= 3
@@ -55,32 +57,30 @@ get '/autoTerreno/:x/:y' do
       $posAutosX.push(params[:posXAuto4])
       $posAutosY.push(params[:posYAuto4])
       $orientacionAutos.push(params[:direccionAuto4])
-
    end
    if $cantAutosAux.to_i >= 5
       $posAutosX.push(params[:posXAuto5])
       $posAutosY.push(params[:posYAuto5])
       $orientacionAutos.push(params[:direccionAuto5])
    end
-   
    for index in 0..$terreno.getAutos().length-1 do
       $terreno.getAuto(index).setlimitx($tamX)
       $terreno.getAuto(index).setlimity($tamY)
       $terreno.getAuto(index).setx($posAutosX[index].to_i)
       $terreno.getAuto(index).sety($posAutosY[index].to_i)
       $terreno.getAuto(index).setdir($orientacionAutos[index])
-   end
-   erb :autoTerreno
 
-   #for index in 0..$terreno.getAutos().length-1 do
-    #  if(($terreno.getAuto(index).getx()>$tamX)||($terreno.getAuto(index).gety()>$posY)||($terreno.getAuto(index).getx()<0)||($terreno.getAuto(index).gety()<0))
-    #     erb :errorAuto
-    #  elsif (($terreno.getAuto(index).getx()<$tamX)&&($terreno.getAuto(index).gety()<$posY)&&($terreno.getAuto(index).getx()>0)&&($terreno.getAuto(index).gety()>0))
-    #     erb :autoTerreno
-    #  end
-   #end
-   
-end
+         if(($posAutosX[index].to_i<0)||($posAutosY[index].to_i<0)||($posAutosX[index].to_i>=$tamX)||($posAutosY[index].to_i>=$tamY))
+            @datosValidos=false
+            index=$terreno.getAutos().length
+         end
+   end
+   if(@datosValidos==true)
+      erb :autoTerreno
+   else
+      erb :errorAuto
+   end
+ end
 
 post '/autoTerreno/:x/:y' do
    $tamX=params[:x].to_i 
@@ -126,40 +126,16 @@ post '/autoTerreno/:x/:y' do
             index=$terreno.getAutos().length
          end
    end
-   puts @datosValidos
    if(@datosValidos==true)
       erb :autoTerreno
    else
       erb :errorAuto
    end
-
-   #for index in 0..$terreno.getAutos().length-1 do
-    #  if(($terreno.getAuto(index).getx()>$tamX)||($terreno.getAuto(index).gety()>$posY)||($terreno.getAuto(index).getx()<0)||($terreno.getAuto(index).gety()<0))
-    #     erb :errorAuto
-    #  elsif (($terreno.getAuto(index).getx()<$tamX)&&($terreno.getAuto(index).gety()<$posY)&&($terreno.getAuto(index).getx()>0)&&($terreno.getAuto(index).gety()>0))
-    #     erb :autoTerreno
-    #  end
-   #end
-   #puts $posAutosX.length
-   #puts $posAutosY.length
-   #puts $orientacionAutos.length
-   #$posX = params[:posX].to_i
-   #$posY = params[:posY].to_i
-   #$orientacion = params[:direccion]
-   #$auto=Auto.new($posX,$posY,$orientacion)
-   #$auto.setlimitx($tamX)
-   #$auto.setlimity($tamY)
-   #$posicionAuto=$auto.getPosition()
-  # if(($posX>$tamX)||($tamY<$posY)||($posX<0)||($posY<0))
-  #    erb :errorAuto
-  # else
-   #   erb :autoTerreno
-   #end
  end
 
  post '/moveCar' do
    $movAutos=[]
-   $movAutos.push(params[:movAuto1])
+   $movAutos.push(params[:movAuto1])   
    $terreno.getAuto(0).movimiento($movAutos[0])
    if ($cantAutosAux.to_i > 1)
       $movAutos.push(params[:movAuto2])

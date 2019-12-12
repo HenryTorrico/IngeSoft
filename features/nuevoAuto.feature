@@ -3,10 +3,9 @@ Feature:
     Quiero crear un auto
     Para poder manejarlo
 
-    Scenario:
+Scenario:
     Given visito la pagina principal
-    And ingreso "4" en el campo de auto "posX"
-    And ingreso "2" en el campo de auto "posY"
-    And ingreso "I" en el campo de auto "direccion"
-    When presiono el boton "Generar Auto"
-    Then deberia ver el mensaje "Terreno con un Auto"
+    When lleno las posiciones con 4 y 3 y "N"
+    And presiono el boton "Generar Autos"
+    Then deberia ver el mensaje "Terreno con Auto"
+    And deberia ver el boton "Mover Autos"
