@@ -21,32 +21,44 @@
 <body>
 	<center>
 		<div class="jumbotron">
-	
-		<br/>
-	        <% for i in 0..$tamY-1 do %>
-                <% for j in 0..$tamX-1 do %>
-                    <b>
-						<% for index in 0..$terreno.getAutos().length-1 do %>
-							<% if ((i == $terreno.getAuto(index).gety()) && (j==$terreno.getAuto(index).getx())) %>       
-								1
-								<% else %> 
-								0
+			<% for i in 0..$tamY-1 do %>
+				<% for j in 0..$tamX-1 do %>
+					<b>
+						<% l=0 %>
+						<% for k in 0..$cantAutosAux-1 do %>
+							<% if (i == $terreno.getAuto(k).gety()) and (j == $terreno.getAuto(k).getx()) %>       
+								1	
+								<% l=1 %>
 							<% end %>
+							
 						<% end %>
-                    </b>
-                <% end %>
-                <br/>
-            <% end %>
+						<%if (l==0)%>
+							0
+						<% end %>
+					</b>
+				<% end %>
+				<br/>
+			<% end %>
 		</div>
-		<!--<div class="jumbotron">
-			<h3>Posicion actual del carro: </h3>
+		<div class="jumbotron">
+
+			<% for index in 1..$cantAutosAux.to_i %>
+			<h3>Posicion actual del carro <%=index%> : </h3>
 			<br/>
-			<%= $posicionAuto %>
+			<%= $terreno.getAuto(index-1).getPosition() %>
+			<br/>
+			<% end %>
+
 		</div>
 		<br/>
 		<form method="post" action="/moveCar">
-			<input type='text' name='movement' id='movement' placeholder='Ingrese Los movimientos del auto con mayusculas' class="form-control" >              
-			<input type="submit" value="mover">
-        </form>-->
+
+			<% for index in 1..$cantAutosAux.to_i %>
+				<input type='text' class="form-control" name='movAuto<%=index%>' placeholder='Ingrese movimiento del auto <%=index%>'/>
+				<br/>
+			<% end %>
+			<button type="submit"  class="btn btn-success" name="Mover Autos">Mover Autos</button>
+
+        </form>
 	</center>
 </body>
