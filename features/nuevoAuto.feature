@@ -5,7 +5,11 @@ Feature:
 
 Scenario:
     Given visito la pagina principal
-    When lleno las posiciones con 4 y 3 y "N"
+    When ingreso "3" en el campo de posicion X "posXAuto1"
+    And ingreso "3" en el campo de posicion Y "posYAuto1"
+    And ingreso "N" en el campo de direccion "direccionAuto1"
     And presiono el boton "Generar Autos"
     Then deberia ver el mensaje "Terreno con Auto"
     And deberia ver el boton "Mover Autos"
+
+    

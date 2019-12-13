@@ -2,9 +2,9 @@ Given("visito la pagina principal") do
     visit '/'
   end
   
-  Given("ingreso {string} en el campo {string}") do |valor, campo|
+Given("ingreso {string} en el campo {string}") do |valor, campo|
     fill_in(campo, :with => valor)
-  end
+end
   
   When("presiono el boton {string}") do |name|
     click_button(name)
