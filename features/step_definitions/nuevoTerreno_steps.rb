@@ -1,20 +1,21 @@
 Given("visito la pagina principal") do
-    visit '/'
+  visit '/'
 end
-  
-Given("ingreso {string} en el campo {string}") do |valor, campo|
-    fill_in(campo, :with => valor)
-end
-  
-  When("presiono el boton {string}") do |name|
-    click_button(name)
-  end
-  
-  Then("deberia ver el mensaje {string}") do |string|
-    last_response.body.should =~ /#{string}/m
-  end
 
-  Then("deberia ver el boton {string}") do |string|
-    last_response.body.should =~ /#{string}/m
-  end
-  
+Given("ingreso {string} en el campo {string}") do |string, string2|
+  fill_in(string2, :with => string)
+end
+
+When("presiono el boton {string}") do |string|
+  click_button(string)
+end
+
+Then("deberia ver el mensaje {string}") do |string|
+  visit '/play'
+  last_response.body.should =~ /#{string}/m
+end
+
+Then("deberia ver el boton {string}") do |string|
+  visit '/play'
+  last_response.body.should =~ /#{string}/m
+end
