@@ -36,12 +36,64 @@
 
     <center>
 		<form method="post" action="/autoTerreno/<%=$tamX%>/<%=$tamY%>">
-			<% for index in 1..$cantAutosAux.to_i %>
-				<input type='text'  name='posXAuto<%=index%>' id='posXAuto<%=index%>'placeholder='Ingrese posicion en X de auto <%=index%>'/>
+			<% if $cantAutosAux>=1%>  
+				<input class="form-control" type='text' name='posXAuto1' id='posXAuto1' placeholder='Ingrese posicion en X de auto 1'/>
 					<br/>
-					<input type='text'  name='posYAuto<%=index%>' id='posYAuto<%=index%>'placeholder='Ingrese posicion en Y de auto <%=index%>'/>
+				<input class="form-control" type='text' name='posYAuto1' id='posYAuto1' placeholder='Ingrese posicion en Y de auto 1'/>
+				<br/>
+				<select class="form-control" name="direccionAuto1" id="direccionAuto1">
+					<option value="N">Norte</option>
+					<option value="S">Sud</option>
+					<option value="E">Este</option>
+					<option value="W">Oeste</option>
+				</select>
+				<br>
+			<% end %>
+			<% if  $cantAutosAux>=2%>  
+				<input type='text'  name='posXAuto2' id='posXAuto2'placeholder='Ingrese posicion en X de auto 2'/>
 					<br/>
-					<select class="form-control" name="direccionAuto<%=index%>" id="direccionAuto<%=index%>">
+					<input type='text'  name='posYAuto2' id='posYAuto2'placeholder='Ingrese posicion en Y de auto 2'/>
+					<br/>
+					<select class="form-control" name="direccionAuto2" id="direccionAuto2">
+						<option value="N">Norte</option>
+						<option value="S">Sud</option>
+						<option value="E">Este</option>
+						<option value="W">Oeste</option>
+					</select>
+				<br>
+			<% end %>
+			<% if  $cantAutosAux>=3%>  
+				<input type='text'  name='posXAuto3' id='posXAuto3'placeholder='Ingrese posicion en X de auto 3'/>
+					<br/>
+					<input type='text'  name='posYAuto3' id='posYAuto3'placeholder='Ingrese posicion en Y de auto 3'/>
+					<br/>
+					<select class="form-control" name="direccionAuto3" id="direccionAuto3">
+						<option value="N">Norte</option>
+						<option value="S">Sud</option>
+						<option value="E">Este</option>
+						<option value="W">Oeste</option>
+					</select>
+				<br>
+			<% end %>
+			<% if  $cantAutosAux>=4%>  
+				<input type='text'  name='posXAuto4' id='posXAuto4'placeholder='Ingrese posicion en X de auto 4'/>
+					<br/>
+					<input type='text'  name='posYAuto4' id='posYAuto4'placeholder='Ingrese posicion en Y de auto 4'/>
+					<br/>
+					<select class="form-control" name="direccionAuto4" id="direccionAuto4">
+						<option value="N">Norte</option>
+						<option value="S">Sud</option>
+						<option value="E">Este</option>
+						<option value="W">Oeste</option>
+					</select>
+				<br>
+			<% end %>
+			<% if  $cantAutosAux>=5%>  
+				<input type='text'  name='posXAuto5' id='posXAuto5'placeholder='Ingrese posicion en X de auto 5'/>
+					<br/>
+					<input type='text'  name='posYAuto5' id='posYAuto5'placeholder='Ingrese posicion en Y de auto 5'/>
+					<br/>
+					<select class="form-control" name="direccionAuto5" id="direccionAuto5">
 						<option value="N">Norte</option>
 						<option value="S">Sud</option>
 						<option value="E">Este</option>
