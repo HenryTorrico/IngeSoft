@@ -7,14 +7,25 @@ get '/' do
    erb :nuevoTerreno
 end
 
+get '/errorAuto' do
+   erb :terreno
+end
+get '/play' do
+   $posX = params[:posX].to_i
+   $posY = params[:posY].to_i
+   if(($tamX<=0)||($tamY<=0))
+      erb :errorTerreno
+   else
+      erb :terreno
+   end
+end
+
 post '/play' do
    $tamX = params[:tamX].to_i
    $tamY = params[:tamY].to_i
    $posX = params[:posX].to_i
    $posY = params[:posY].to_i
-   if(($tamX<=0)||($tamY<=0))
-      erb :errorTerreno
-   else
+   if(($tamX>=0)||($tamY>=0))
       @cantAutos = params[:players].to_i
       $cantAutosAux = @cantAutos
       $terreno = Terreno.new($tamX,$tamY)
@@ -22,43 +33,19 @@ post '/play' do
          $terreno.addAuto(Auto.new(0,0,"N"))
          @cantAutos = @cantAutos - 1
       end
-      erb :terreno
    end
-end
-get '/play' do
-   $tamX = params[:tamX].to_i
-   $tamY = params[:tamY].to_i
-   $posX = params[:posX].to_i
-   $posY = params[:posY].to_i
-   if(($tamX<=0)||($tamY<=0))
-      erb :errorTerreno
-   else
-      @cantAutos = params[:players].to_i
-      $cantAutosAux = @cantAutos
-      $terreno = Terreno.new($tamX,$tamY)
-      while @cantAutos > 0
-         $terreno.addAuto(Auto.new(0,0,"N"))
-         @cantAutos = @cantAutos - 1
-      end
-      erb :terreno
-   end
-end
-
-get '/errorAuto' do
-   erb :terreno
+   redirect "/play"
 end
 
 
-post '/autoTerreno/:x/:y' do
-   $tamX=params[:x].to_i 
-   $tamY=params[:y].to_i
+post '/autoTerreno' do
    $posAutosX = []
    $posAutosY = []
    $orientacionAutos = []
-   @datosValidos=true
+   $datosValidos=true
    if $cantAutosAux.to_i >= 1
-      $posAutosX.push(params[:posXAuto1])
-      $posAutosY.push(params[:posYAuto1])
+      $posAutosX.push(params[:posXAuto1].to_i)
+      $posAutosY.push(params[:posYAuto1].to_i)
       $orientacionAutos.push(params[:direccionAuto1])
    end
    if $cantAutosAux.to_i >= 2
@@ -84,16 +71,20 @@ post '/autoTerreno/:x/:y' do
    for index in 0..$terreno.getAutos().length-1 do
       $terreno.getAuto(index).setlimitx($tamX)
       $terreno.getAuto(index).setlimity($tamY)
-      $terreno.getAuto(index).setx($posAutosX[index].to_i)
-      $terreno.getAuto(index).sety($posAutosY[index].to_i)
+      $terreno.getAuto(index).setDefaultX($posAutosX[index])
+      $terreno.getAuto(index).setDefaultY($posAutosY[index])
       $terreno.getAuto(index).setdir($orientacionAutos[index])
-
-         if(($posAutosX[index].to_i<0)||($posAutosY[index].to_i<0)||($posAutosX[index].to_i>=$tamX)||($posAutosY[index].to_i>=$tamY))
-            @datosValidos=false
-            index=$terreno.getAutos().length
-         end
+   
+      if(($posAutosX[index]<0)||($posAutosY[index]<0)||($posAutosX[index]>=$tamX)||($posAutosY[index]>=$tamY))
+         $datosValidos=false
+         index=$terreno.getAutos().length
+      end
    end
-   if(@datosValidos==true)
+   redirect "/autoTerreno"
+ end
+
+ get '/autoTerreno' do
+   if($datosValidos==true)
       erb :autoTerreno
    else
       erb :errorAuto

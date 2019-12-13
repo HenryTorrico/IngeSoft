@@ -37,6 +37,16 @@ class Auto
     def getx()
         return @posicion_x
     end
+    
+    def setDefaultX(num)
+        @posicion_x=num
+        updatePosition()
+    end
+
+    def setDefaultY(num)
+        @posicion_y=num
+        updatePosition()
+    end
 
     def sety(num)
         if(num>=0)
