@@ -1,6 +1,6 @@
 Given("visito la pagina principal") do
     visit '/'
-  end
+end
   
 Given("ingreso {string} en el campo {string}") do |valor, campo|
     fill_in(campo, :with => valor)
@@ -17,3 +17,4 @@ end
   Then("deberia ver el boton {string}") do |string|
     last_response.body.should =~ /#{string}/m
   end
+  

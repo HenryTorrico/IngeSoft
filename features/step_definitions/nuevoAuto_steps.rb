@@ -1,20 +1,17 @@
 
-When("selecciono {int} auto") do |int|
-    visit '/'
-    select /#{int}/m, :from => "players"
+When("lleno las posiciones con {string} , {string} y {string}") do |posX, posY, orientacion|
+    visit '/play'
+    fill_in('posXAuto1', with: posX)
+    fill_in('posYAuto1', with: posY)
+    fill_in('direccionAuto1', with: orientacion)
 end
 
-When("ingreso {string} en el campo de direccion {string}") do |direccion, campo|
+When("presiono el boton en terreno {string}") do |string|
     visit '/play'
-    fill_in(campo, :with => direccion)
+    click_button(string)
   end
   
-  When("ingreso {string} en el campo de posicion X {string}") do |posX, campo|
+  Then("deberia ver el boton para mover los autos{string}") do |string|
     visit '/play'
-    fill_in(campo, :with => posX) 
- end
-  
-  When("ingreso {string} en el campo de posicion Y {string}") do |posY, campo|
-    visit '/play'
-    fill_in(campo, :with => posY)
+    last_response.body.should =~ /#{string}/m
   end

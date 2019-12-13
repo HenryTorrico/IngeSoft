@@ -1,15 +1,11 @@
 Feature:
     Como jugador
-    Quiero crear un auto
-    Para poder manejarlo
-
+    Quiero crear varios autos
+    Para poder manejarlos
+    
+    
 Scenario:
     Given visito la pagina principal
-    When ingreso "3" en el campo de posicion X "posXAuto1"
-    And ingreso "3" en el campo de posicion Y "posYAuto1"
-    And ingreso "N" en el campo de direccion "direccionAuto1"
-    And presiono el boton "Generar Autos"
-    Then deberia ver el mensaje "Terreno con Auto"
-    And deberia ver el boton "Mover Autos"
-
-    
+    And lleno las posiciones con "4" , "3" y "N"
+    When presiono el boton en terreno "Generar Autos"
+    Then deberia ver el boton para mover los autos"Mover Autos"

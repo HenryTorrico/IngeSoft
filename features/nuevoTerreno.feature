@@ -20,3 +20,4 @@ Scenario:
     When presiono el boton "Generar Terreno"
     Then deberia ver el mensaje "Datos de Terreno ingresados no validos!"
     And deberia ver el boton "Aceptar"
+

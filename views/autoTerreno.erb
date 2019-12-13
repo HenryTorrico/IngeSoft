@@ -52,11 +52,27 @@
 		</div>
 		<br/>
 		<form method="post" action="/moveCar">
-
-			<% for index in 1..$cantAutosAux.to_i %>
-				<input type='text' class="form-control" name='movAuto<%=index%>' placeholder='Ingrese movimiento del auto <%=index%>'/>
-				<br/>
+			<% if $cantAutosAux>=1%>  
+					<input type='text' class="form-control" name='movAuto1' placeholder='Ingrese movimiento del auto 1'/>
+					<br/>
 			<% end %>
+			<% if $cantAutosAux>=2%>  
+				<input type='text' class="form-control" name='movAuto2' placeholder='Ingrese movimiento del auto 2'/>
+				<br/>
+			<% end %>	
+			<% if $cantAutosAux>=3%>  
+				<input type='text' class="form-control" name='movAuto3' placeholder='Ingrese movimiento del auto 3'/>
+				<br/>
+			<% end %>	
+			<% if $cantAutosAux>=4%>  
+				<input type='text' class="form-control" name='movAuto4' placeholder='Ingrese movimiento del auto 4'/>
+				<br/>
+			<% end %>	
+			<% if $cantAutosAux>=5%>  
+				<input type='text' class="form-control" name='movAuto5' placeholder='Ingrese movimiento del auto 5'/>
+				<br/>
+			<% end %>	
+
 			<button type="submit"  class="btn btn-success" name="Mover Autos">Mover Autos</button>
 
         </form>
